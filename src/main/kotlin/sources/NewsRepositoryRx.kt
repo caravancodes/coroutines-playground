@@ -29,7 +29,7 @@ import sources.remote.NewsApiServiceRx
 object NewsRepositoryRx : NewsDataSource {
 
     private val TAG = NewsRepositoryRx::class.java.simpleName
-    private var newsApiService = ApiClient.createRx<NewsApiServiceRx>(NewsUrl.BASE_URL, true)
+    private var newsApiService = ApiClient.createRx<NewsApiServiceRx>(NewsUrl.BASE_URL)
 
     override fun getTopHeadline(
         apiKey: String,
@@ -42,10 +42,8 @@ object NewsRepositoryRx : NewsDataSource {
         callback: ApiResponse<ArticleResponse>
     ) {
         newsApiService.getTopHeadline(apiKey, q, sources, category, country, pageSize, page)
-            .subscribeOn(Schedulers.io())
             .doOnSubscribe { callback.onShowProgress() }
             .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.newThread())
             .subscribe(object : ApiObserver<ArticleResponse>() {
                 override fun onSuccess(data: ArticleResponse) {
                     callback.onSuccess(data)
@@ -86,10 +84,8 @@ object NewsRepositoryRx : NewsDataSource {
             pageSize,
             page
         )
-            .subscribeOn(Schedulers.io())
             .doOnSubscribe { callback.onShowProgress() }
             .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.newThread())
             .subscribe(object : ApiObserver<ArticleResponse>() {
                 override fun onSuccess(data: ArticleResponse) {
                     callback.onSuccess(data)
@@ -109,10 +105,8 @@ object NewsRepositoryRx : NewsDataSource {
         callback: ApiResponse<SourceResponse>
     ) {
         newsApiService.getSources(apiKey, language, country, category)
-            .subscribeOn(Schedulers.io())
             .doOnSubscribe { callback.onShowProgress() }
             .doOnTerminate { callback.onHideProgress() }
-            .observeOn(Schedulers.newThread())
             .subscribe(object : ApiObserver<SourceResponse>() {
                 override fun onSuccess(data: SourceResponse) {
                     callback.onSuccess(data)
