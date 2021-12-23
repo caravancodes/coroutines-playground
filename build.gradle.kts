@@ -12,7 +12,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC3")
     implementation("com.google.code.gson:gson:2.8.9")
 
@@ -26,6 +25,8 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.1.4") // Koin core features
 
     implementation("io.reactivex.rxjava2:rxjava:2.2.21")
+
+    testImplementation(kotlin("test"))
 }
 
 tasks.test {
