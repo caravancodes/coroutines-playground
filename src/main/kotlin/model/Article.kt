@@ -1,7 +1,6 @@
 package model
 
 import com.google.gson.annotations.SerializedName
-import model.Source
 
 /**
  * Created by Faisal Amir

@@ -2,6 +2,7 @@ import com.frogobox.api.news.util.NewsConstant
 import com.frogobox.api.news.util.NewsUrl
 import sources.remote.ApiResponse
 import response.ArticleResponse
+import sources.ConsumeNewsApi
 
 /*
  * Created by faisalamir on 23/12/21
@@ -17,8 +18,8 @@ import response.ArticleResponse
  */
 
 fun main() {
-    val consumeNewsApi = ConsumeNewsApiRx(NewsUrl.API_KEY) // Your API_KEY
-    consumeNewsApi.getEverythings( // Adding Base Parameter on main function
+    val consumeNewsApi = ConsumeNewsApi(NewsUrl.API_KEY) // Your API_KEY
+    consumeNewsApi.getRxEverythings( // Adding Base Parameter on main function
         NewsConstant.CATEGORY_HEALTH,
         null,
         null,

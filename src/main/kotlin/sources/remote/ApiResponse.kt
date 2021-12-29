@@ -1,4 +1,6 @@
-package sources.remote/*
+package sources.remote
+
+/*
  * Created by faisalamir on 21/08/21
  * FrogoConsumeApi
  * -----------------------------------------

@@ -1,8 +1,8 @@
+package sources
 
-import sources.remote.ApiResponse
 import response.ArticleResponse
 import response.SourceResponse
-import sources.NewsRepository
+import sources.remote.ApiResponse
 
 /**
  * Created by Faisal Amir
@@ -90,5 +90,57 @@ class ConsumeNewsApi(private val apiKey: String) : IConsumeNewsApi {
             category,
             callback
         )
+    }
+
+    override fun getRxTopHeadline(
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    ) {
+        newsRepository.getRxTopHeadline(apiKey, q, sources, category, country, pageSize, page, callback)
+    }
+
+    override fun getRxEverythings(
+        q: String?,
+        from: String?,
+        to: String?,
+        qInTitle: String?,
+        sources: String?,
+        domains: String?,
+        excludeDomains: String?,
+        language: String?,
+        sortBy: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    ) {
+        newsRepository.getRxEverythings(
+            apiKey,
+            q,
+            from,
+            to,
+            qInTitle,
+            sources,
+            domains,
+            excludeDomains,
+            language,
+            sortBy,
+            pageSize,
+            page,
+            callback
+        )
+    }
+
+    override fun getRxSources(
+        language: String,
+        country: String,
+        category: String,
+        callback: ApiResponse<SourceResponse>
+    ) {
+        newsRepository.getSources(apiKey, language, country, category, callback)
     }
 }

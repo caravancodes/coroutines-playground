@@ -63,4 +63,46 @@ interface NewsApiService {
         @Query(NewsConstant.QUERY_CATEGORY) category: String
     ): Call<SourceResponse>
 
+    // -----------------------------------------------------------------------------------------------------------------
+    // Rx Java
+    // -----------------------------------------------------------------------------------------------------------------
+
+    // Get Top Headline
+    @GET(NewsUrl.URL_TOP_HEADLINE)
+    fun getRxTopHeadline(
+        @Query(NewsConstant.QUERY_API_KEY) apiKey: String,
+        @Query(NewsConstant.QUERY_Q) q: String?,
+        @Query(NewsConstant.QUERY_SOURCES) sources: String?,
+        @Query(NewsConstant.QUERY_CATEGORY) category: String?,
+        @Query(NewsConstant.QUERY_COUNTRY) country: String?,
+        @Query(NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
+        @Query(NewsConstant.QUERY_PAGE) page: Int?
+    ): Observable<ArticleResponse>
+
+    // Get Everythings
+    @GET(NewsUrl.URL_EVERYTHING)
+    fun getRxEverythings(
+        @Query(NewsConstant.QUERY_API_KEY) apiKey: String,
+        @Query(NewsConstant.QUERY_Q) q: String?,
+        @Query(NewsConstant.QUERY_FROM) from: String?,
+        @Query(NewsConstant.QUERY_TO) to: String?,
+        @Query(NewsConstant.QUERY_Q_IN_TITLE) qInTitle: String?,
+        @Query(NewsConstant.QUERY_SOURCES) sources: String?,
+        @Query(NewsConstant.QUERY_DOMAINS) domains: String?,
+        @Query(NewsConstant.QUERY_EXCLUDE_DOMAINS) excludeDomains: String?,
+        @Query(NewsConstant.QUERY_LANGUAGE) language: String?,
+        @Query(NewsConstant.QUERY_SORT_BY) sortBy: String?,
+        @Query(NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
+        @Query(NewsConstant.QUERY_PAGE) page: Int?
+    ): Observable<ArticleResponse>
+
+    // Get Sources
+    @GET(NewsUrl.URL_SOURCES)
+    fun getRxSources(
+        @Query(NewsConstant.QUERY_API_KEY) apiKey: String,
+        @Query(NewsConstant.QUERY_LANGUAGE) language: String,
+        @Query(NewsConstant.QUERY_COUNTRY) country: String,
+        @Query(NewsConstant.QUERY_CATEGORY) category: String
+    ): Observable<SourceResponse>
+
 }

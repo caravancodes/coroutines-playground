@@ -61,4 +61,42 @@ interface NewsDataSource {
         callback: ApiResponse<SourceResponse>
     )
 
+    // Get Top Headline
+    fun getRxTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    )
+
+    // Get Everythings
+    fun getRxEverythings(
+        apiKey: String,
+        q: String?,
+        from: String?,
+        to: String?,
+        qInTitle: String?,
+        sources: String?,
+        domains: String?,
+        excludeDomains: String?,
+        language: String?,
+        sortBy: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    )
+
+    // Get Sources
+    fun getRxSources(
+        apiKey: String,
+        language: String,
+        country: String,
+        category: String,
+        callback: ApiResponse<SourceResponse>
+    )
+
 }

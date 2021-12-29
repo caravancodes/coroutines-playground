@@ -1,8 +1,8 @@
+package sources
 
-import sources.remote.ApiResponse
 import response.ArticleResponse
 import response.SourceResponse
-import sources.NewsRepositoryRx
+import sources.remote.ApiResponse
 
 /**
  * Created by Faisal Amir
@@ -21,11 +21,10 @@ import sources.NewsRepositoryRx
  * com.frogobox.frogoconsumeapi.news
  *
  */
-class ConsumeNewsApiRx(private val apiKey: String) : IConsumeNewsApi {
+interface IConsumeNewsApi {
 
-    private val newsRepository = NewsRepositoryRx
-
-    override fun getTopHeadline(
+    // Get Top Headline
+    fun getTopHeadline(
         q: String?,
         sources: String?,
         category: String?,
@@ -33,20 +32,10 @@ class ConsumeNewsApiRx(private val apiKey: String) : IConsumeNewsApi {
         pageSize: Int?,
         page: Int?,
         callback: ApiResponse<ArticleResponse>
-    ) {
-        newsRepository.getTopHeadline(
-            apiKey,
-            q,
-            sources,
-            category,
-            country,
-            pageSize,
-            page,
-            callback
-        )
-    }
+    )
 
-    override fun getEverythings(
+    // Get Everythings
+    fun getEverythings(
         q: String?,
         from: String?,
         to: String?,
@@ -59,36 +48,49 @@ class ConsumeNewsApiRx(private val apiKey: String) : IConsumeNewsApi {
         pageSize: Int?,
         page: Int?,
         callback: ApiResponse<ArticleResponse>
-    ) {
-        newsRepository.getEverythings(
-            apiKey,
-            q,
-            from,
-            to,
-            qInTitle,
-            sources,
-            domains,
-            excludeDomains,
-            language,
-            sortBy,
-            pageSize,
-            page,
-            callback
-        )
-    }
+    )
 
-    override fun getSources(
+    // Get Sources
+    fun getSources(
         language: String,
         country: String,
         category: String,
         callback: ApiResponse<SourceResponse>
-    ) {
-        newsRepository.getSources(
-            apiKey,
-            language,
-            country,
-            category,
-            callback
-        )
-    }
+    )
+
+    // Get Top Headline
+    fun getRxTopHeadline(
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    )
+
+    // Get Everythings
+    fun getRxEverythings(
+        q: String?,
+        from: String?,
+        to: String?,
+        qInTitle: String?,
+        sources: String?,
+        domains: String?,
+        excludeDomains: String?,
+        language: String?,
+        sortBy: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: ApiResponse<ArticleResponse>
+    )
+
+    // Get Sources
+    fun getRxSources(
+        language: String,
+        country: String,
+        category: String,
+        callback: ApiResponse<SourceResponse>
+    )
+
 }
